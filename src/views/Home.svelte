@@ -81,9 +81,12 @@
                     count="{ $data.channels.map((channel) => channel.messages).flat().map((message) => message.length).reduce((p, c) => p + c) }"
                 />
                 <FunFact svg="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                    <h3 slot="content">Your favorite words are
-                        <span class="text-discord"><SvelteTooltip tip="Used {$data.favoriteWords[0].count.toLocaleString('en-US')} times" bottom color="#000000"><span class="text-discord">{$data.favoriteWords[0].word}</SvelteTooltip></span> and
-                        <span class="text-discord"><SvelteTooltip tip="Used {$data.favoriteWords[1].count.toLocaleString('en-US')} times" bottom color="#000000">{$data.favoriteWords[1].word}</SvelteTooltip></span>
+                    <h3 slot="content">Your Top10 favourite words are:
+						<table>
+							{#each $data.favoriteWords as word, i}
+							<tr><td><strong>{i}.</strong></td><td><span class="text-discord"><SvelteTooltip tip="Used {$data.favoriteWords[i].count.toLocaleString('en-US')} times" bottom color="#000000">{$data.favoriteWords[i].word}</SvelteTooltip></span></td></tr>
+							{/each}
+						</table>
                     </h3>
                 </FunFact>
                 <FunFact
